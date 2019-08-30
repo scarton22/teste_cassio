@@ -1,0 +1,44 @@
+{
+  "name": "reservas",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "tipo": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "inicioem": {
+      "type": "date",
+      "required": true
+    },
+    "fimem": {
+      "type": "date",
+      "required": true
+    },
+    "duracao": {
+      "type": "number",
+      "required": false
+    },
+    "criadaem": {
+      "type": "int"
+    },
+    "valor": {
+      "type": "number"
+    },
+    "canceladaem": {
+      "type": "date",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
