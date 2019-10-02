@@ -25,14 +25,14 @@ module.exports = (Reservas) => {
       let filter = {
         where: {
           tipo: reservas.tipo,
-          // or: [
-          //     {and:[{inicioem : {lte:(reservas.inicioem.toISOString())}},{fimem:{gt:(reservas.inicioem.toISOString())}},
-          //         {or:[{status:'Ativa'}]}]},
+          or: [
+              {and:[{inicioem : {lte:(reservas.inicioem.toISOString())}},{fimem:{gt:(reservas.inicioem.toISOString())}},
+                  {or:[{status:'Ativa'}]}]},
 
-          //         {and:[{inicioem : {lt:(reservas.fimem.toISOString())}},{fimem:{gte:(reservas.fimem.toISOString())}},
-          //         {or:[{status:'Ativa'}]}]},
+                  {and:[{inicioem : {lt:(reservas.fimem.toISOString())}},{fimem:{gte:(reservas.fimem.toISOString())}},
+                  {or:[{status:'Ativa'}]}]},
 
-          //   ]
+            ]
         }
       };
       Reservas.find(filter).then(dados => {
