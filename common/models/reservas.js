@@ -53,16 +53,7 @@ module.exports = (Reservas) => {
 
       }
       
-      // Reservas.find(filter).then(dados => {
-      //   if (dados.length === 0) {
-      //     resolve(true);
-      //   } else {
-      //     resolve(false);
-      //   }
-      // }).catch(err => {
-      //   reject(err)
-      // })
-  //  })
+      
   }
 
 
@@ -83,7 +74,7 @@ module.exports = (Reservas) => {
       return;
 
     }
-
+    
     validaReserva(ctx.instance).then(estaVazio => {
       if (!estaVazio) {
         let customError = new Error('Horario ocupado');
