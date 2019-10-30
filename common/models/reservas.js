@@ -21,30 +21,48 @@ module.exports = (Reservas) => {
   }
   //////////////
   async function validaReserva(reservas) {
-    return new Promise((resolve, reject) => {
+    // return new Promise((resolve, reject) => {
       let filter = {
         where: {
           tipo: reservas.tipo,
-          or: [
-              {and:[{inicioem : {lte:(reservas.inicioem.toISOString())}},{fimem:{gt:(reservas.inicioem.toISOString())}},
-                  {or:[{status:'Ativa'}]}]},
 
-                  {and:[{inicioem : {lt:(reservas.fimem.toISOString())}},{fimem:{gte:(reservas.fimem.toISOString())}},
-                  {or:[{status:'Ativa'}]}]},
-
-            ]
+                and:[
+                {
+                  inicioem : 
+                    {
+                      gte:(reservas.inicioem)
+                }
+                },
+                {
+                  fimem:
+                    {
+                      lte:(reservas.fimem)
+                    }
+                },
+                {
+                  status: 'ativa'
+                }
+               ]
         }
       };
-      Reservas.find(filter).then(dados => {
-        if (dados.length == 0) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }).catch(err => {
-        reject(err)
-      })
-    })
+      try{
+        const dados = await Reservas.find(filter)
+        return dados.length === 0 ? true:false;
+      } catch(e){ throw new Error(e.message);
+      
+
+      }
+      
+      // Reservas.find(filter).then(dados => {
+      //   if (dados.length === 0) {
+      //     resolve(true);
+      //   } else {
+      //     resolve(false);
+      //   }
+      // }).catch(err => {
+      //   reject(err)
+      // })
+  //  })
   }
 
 
@@ -66,8 +84,8 @@ module.exports = (Reservas) => {
 
     }
 
-    validaReserva(ctx.instance).then(reservaValida => {
-      if (!reservaValida) {
+    validaReserva(ctx.instance).then(estaVazio => {
+      if (!estaVazio) {
         let customError = new Error('Horario ocupado');
         customError.statusCode = 422;
         next(customError);
@@ -85,13 +103,13 @@ module.exports = (Reservas) => {
   
   
   
-        // if (duracao < 60){
-        //      let customError= new Error('hora invalida');
-        //     erro.statusCode = 422;
-        //    }
+        //  if (duracao < 60){
+        //       let customError= new Error('hora invalida');
+        //      erro.statusCode = 422;
+        //     }
   
   
-        ctx.instance.duracao = duracao;
+        ctx.instance.duracao = duracao;`  `
   
         //calculo do valor de acordo com o tempo
         let valor = duracao * 0.5;
@@ -102,6 +120,8 @@ module.exports = (Reservas) => {
       }
     });
   });
+
+
 
   //overhead deleteById aftersave
   Reservas.on('attached', function (ctx, next) {
@@ -124,3 +144,19 @@ module.exports = (Reservas) => {
   });
 
 };
+// const verificaSaldo = function() {
+//   return new Promise(function(resolve) {
+//     setTimeout(function() {
+//       resolve()
+//     }, 10000);
+//   })
+
+// }
+// async function wololo() {
+//   try {
+//     let validado = await verificaSaldo();
+//   } catch(e) {
+
+//   }
+//   return true;
+// }
