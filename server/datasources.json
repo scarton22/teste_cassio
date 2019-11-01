@@ -5,7 +5,7 @@
     "url": "",
     "database": "Reservadb",
     "password": "",
-    "name": "Reservasdb",
+    "name": "db",
     "user": "",
     "useNewUrlParser": true,
     "connector": "mongodb"

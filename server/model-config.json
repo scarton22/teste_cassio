@@ -38,5 +38,17 @@
   "reservas": {
     "dataSource": "db",
     "public": true
+  },
+  "disponibilidade": {
+    "dataSource": "db",
+    "public": true
+  },
+  "disponibilidade2": {
+    "dataSource": null,
+    "public": true
+  },
+  "disponibilidsde3": {
+    "dataSource": "db",
+    "public": true
   }
 }
