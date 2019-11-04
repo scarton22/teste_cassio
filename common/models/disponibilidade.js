@@ -9,12 +9,12 @@ module.exports = (Disponibilidade) => {
         let horarioInicio = moment.utc(inicioem)
         let horarioFim = moment.utc(fimem)
        if(horasAdd) {
-         horarioInicio.add(horasAdd, "hours");
-         horarioFim.add(horasAdd, "hours");
+         horarioInicio.add(horasAdd * 60, "minutes");
+         horarioFim.add(horasAdd * 60, "minutes");
        }
        if(horasSubtrair) {
-         horarioInicio.subtract(horasSubtrair, "hours")
-         horarioFim.subtract(horasSubtrair, "hours")
+         horarioInicio.subtract(horasSubtrair * 60, "minutes")
+         horarioFim.subtract(horasSubtrair * 60, "minutes")
        }
        let tipo = {};
         tipo[operador] = quadra;
@@ -49,12 +49,12 @@ module.exports = (Disponibilidade) => {
             where: {
               or: [
                  {and: consultaInicioFim(ctx.tipo, "neq", horarioInicio, horarioFim)},
-                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,1, null)},
-                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,null, 1)},
-                 {and: consultaInicioFim(ctx.tipo, "neq", horarioInicio, horarioFim,1, null)},
-                 {and: consultaInicioFim(ctx.tipo, "neq", horarioInicio, horarioFim,null, 1)},
-                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,2, null)},
-                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,null, 2)},
+                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,1.1, null)},
+                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,null, 1.1)},
+                 {and: consultaInicioFim(ctx.tipo, "neq", horarioInicio, horarioFim,1.1, null)},
+                 {and: consultaInicioFim(ctx.tipo, "neq", horarioInicio, horarioFim,null, 1.1)},
+                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,2.1, null)},
+                 {and: consultaInicioFim(ctx.tipo, "eq", horarioInicio, horarioFim,null, 2.1)},
               ]
            }
          };console.log(JSON.stringify(filter, null,2))

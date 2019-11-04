@@ -56,7 +56,8 @@ module.exports = (Reservas) => {
       
   }
 
-
+  
+ 
   ////////////////////////
   Reservas.observe('before save', function (ctx, next) {
     if (!ctx.instance) {
@@ -94,10 +95,7 @@ module.exports = (Reservas) => {
   
   
   
-        //  if (duracao < 60){
-        //       let customError= new Error('hora invalida');
-        //      erro.statusCode = 422;
-        //     }
+        
   
   
         ctx.instance.duracao = duracao;`  `
@@ -135,6 +133,21 @@ module.exports = (Reservas) => {
   });
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const verificaSaldo = function() {
 //   return new Promise(function(resolve) {
 //     setTimeout(function() {
